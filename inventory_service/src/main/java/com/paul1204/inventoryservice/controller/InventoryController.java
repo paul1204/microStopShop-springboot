@@ -3,6 +3,7 @@ package com.paul1204.inventoryservice.controller;
 import com.paul1204.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,4 +19,9 @@ public class InventoryController {
     return inventoryService.isInStock(skuCode);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> deleteStock(@PathVariable("id") Long id){
+        return inventoryService.deleteStock(id);
+    }
 }
