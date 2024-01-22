@@ -1,5 +1,6 @@
 package com.paul1204.inventoryservice.controller;
 
+import com.paul1204.inventoryservice.dto.InventoryResponse;
 import com.paul1204.inventoryservice.model.Inventory;
 import com.paul1204.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -17,17 +18,17 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    @GetMapping("/{sku-code}")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public boolean isInStock(@PathVariable("sku-code") String skuCode){
+    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode){
     return inventoryService.isInStock(skuCode);
     }
 
-    @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> getAllSupply(){
-        return inventoryService.getAllSupply();
-    }
+//    @GetMapping()
+//    @ResponseStatus(HttpStatus.OK)
+//    public ResponseEntity<?> getAllSupply(){
+//        return inventoryService.getAllSupply();
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
